@@ -40,11 +40,6 @@ Navigate to `http://localhost:3000`
 3. Review the injury report
 4. Click "Send Email Report" to deliver via email
 
-## API Keys
-
-- **Resend**: Get your API key at [resend.com](https://resend.com)
-- **Sportradar**: Already configured in `.env.example`
-
 ## Tech Stack
 
 - Frontend: HTML, CSS, JavaScript
