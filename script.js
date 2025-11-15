@@ -499,8 +499,7 @@ function createEmailHTML(team) {
                 
                 <!-- Footer -->
                 <div style="background: #f8fafc; padding: 30px 20px; text-align: center; border-top: 3px solid #1d4ed8;">
-                    <p style="margin: 0 0 8px 0; color: #64748b; font-size: 13px; font-weight: 600;">Powered by DubNation Health Hub 💙💛</p>
-                    <p style="margin: 0 0 8px 0; color: #94a3b8; font-size: 12px;">Real-time injury data provided by Sportradar</p>
+                    <p style="margin: 0 0 8px 0; color: #64748b; font-size: 13px; font-weight: 600;">Powered by DubNation Health Hub</p>
                     <p style="margin: 0; color: #cbd5e1; font-size: 11px;">© ${new Date().getFullYear()} DubNation Health Hub. All rights reserved.</p>
                 </div>
             </div>
