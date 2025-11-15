@@ -43,11 +43,19 @@ async function initSupabase() {
     const { data: { session } } = await supabase.auth.getSession();
     if (session) {
         currentUser = session.user;
-        showAppScreen();
+        console.log('Session found, user logged in:', currentUser.email);
+        updateAuthUI();
+        showPage('tracker'); // Go to tracker if logged in
+        fetchInjuries();
+    } else {
+        console.log('No session found');
+        updateAuthUI();
+        showPage('home'); // Go to home if not logged in
     }
     
     // Listen for auth changes
     supabase.auth.onAuthStateChange((event, session) => {
+        console.log('Auth state changed:', event, session?.user?.email);
         if (event === 'SIGNED_IN') {
             currentUser = session.user;
             showPage('tracker');
@@ -248,8 +256,7 @@ function toggleMobileMenu() {
 
 // Initialize on page load
 window.addEventListener('DOMContentLoaded', () => {
-    initSupabase();
-    showPage('home');
+    initSupabase(); // This will handle showing the right page based on auth state
 });
 
 async function fetchInjuries(silent = false) {
