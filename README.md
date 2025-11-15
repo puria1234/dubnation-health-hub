@@ -1,6 +1,6 @@
 # 🏀 Golden State Warriors Injury Report Emailer
 
-A sleek web app that fetches Golden State Warriors injury data from Sportradar and sends email reports via Resend.
+A sleek web app that fetches Golden State Warriors injury data and sends email reports.
 
 ## Features
 
