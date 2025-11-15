@@ -482,25 +482,10 @@ function createEmailHTML(team) {
                     ${playersHTML}
                 </div>
                 
-                <!-- Promo Section -->
-                <div style="background: linear-gradient(135deg, #1e293b 0%, #334155 100%); padding: 50px 30px; text-align: center; margin-top: 30px;">
-                    <div style="margin-bottom: 25px;">
-                        <h2 style="color: #fbbf24; margin: 0 0 15px 0; font-size: 32px; font-weight: 900; text-transform: uppercase; letter-spacing: 2px;">⚡ EXCLUSIVE OFFER ⚡</h2>
-                        <p style="color: #e2e8f0; margin: 0 0 10px 0; font-size: 18px; font-weight: 600;">Rep Your Warriors in Style!</p>
-                        <p style="color: #cbd5e1; margin: 0; font-size: 15px;">Official Golden State Warriors Gear & Merchandise</p>
-                    </div>
-                    <div style="margin: 30px 0;">
-                        <a href="https://www.rakuten.com/shop/warriorsshop" class="promo-button" style="display: inline-block; background: linear-gradient(90deg, #1d4ed8 0%, #2563eb 25%, #fbbf24 50%, #2563eb 75%, #1d4ed8 100%); background-size: 200% auto; color: white; text-decoration: none; padding: 18px 40px; border-radius: 50px; font-size: 18px; font-weight: 700; box-shadow: 0 6px 20px rgba(251, 191, 36, 0.4);">
-                            🛒 SHOP WARRIORS STORE NOW 🏆
-                        </a>
-                    </div>
-                    <p style="color: #94a3b8; margin: 20px 0 0 0; font-size: 13px;">Limited time offers • Free shipping on orders over $50</p>
-                </div>
-                
                 <!-- Footer -->
-                                <!-- Footer -->
                 <div style="background: #f8fafc; padding: 30px 20px; text-align: center; border-top: 3px solid #1d4ed8;">
                     <p style="margin: 0 0 8px 0; color: #64748b; font-size: 13px; font-weight: 600;">Powered by DubNation Health Hub</p>
+                    <p style="margin: 0 0 8px 0; color: #94a3b8; font-size: 11px;">Not affiliated with the Golden State Warriors</p>
                     <p style="margin: 0; color: #cbd5e1; font-size: 11px;">© ${new Date().getFullYear()} DubNation Health Hub. All rights reserved.</p>
                 </div>
             </div>
