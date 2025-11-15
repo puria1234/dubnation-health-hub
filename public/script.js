@@ -30,13 +30,12 @@ async function initSupabase() {
     const response = await fetch('/api/supabase-config');
     const config = await response.json();
     
-    // Check if user wants to be remembered
-    const rememberMe = getCookie('rememberMe') === 'true';
-    
     supabase = window.supabase.createClient(config.url, config.anonKey, {
         auth: {
-            persistSession: rememberMe,
+            persistSession: true, // Always persist sessions
             storageKey: 'dubnation-auth',
+            autoRefreshToken: true,
+            detectSessionInUrl: true
         }
     });
     
@@ -58,7 +57,7 @@ async function initSupabase() {
             currentUser = null;
             showPage('home');
             updateAuthUI();
-            deleteCookie('rememberMe');
+            sessionStorage.removeItem('sessionOnly');
         }
     });
 }
@@ -124,13 +123,6 @@ async function handleLogin() {
     
     showStatus('Signing in...', 'info', 'authStatus');
     
-    // Set remember me cookie
-    if (rememberMe) {
-        setCookie('rememberMe', 'true', 30); // Remember for 30 days
-    } else {
-        setCookie('rememberMe', 'false', 1);
-    }
-    
     const { data, error } = await supabase.auth.signInWithPassword({
         email,
         password
@@ -140,6 +132,14 @@ async function handleLogin() {
         showStatus(`Error: ${error.message}`, 'error', 'authStatus');
     } else {
         showStatus('Login successful!', 'success', 'authStatus');
+        
+        // If "remember me" is NOT checked, set session to expire on browser close
+        if (!rememberMe) {
+            // Store a flag that this session should not persist
+            sessionStorage.setItem('sessionOnly', 'true');
+        } else {
+            sessionStorage.removeItem('sessionOnly');
+        }
     }
 }
 
