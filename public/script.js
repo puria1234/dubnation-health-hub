@@ -376,7 +376,7 @@ function createEmailHTML(team) {
             <div style="text-align: center; padding: 40px; background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%); border-radius: 15px; margin: 20px 0;">
                 <div style="font-size: 64px; margin-bottom: 10px; animation: bounce 1s infinite;">✅</div>
                 <h3 style="color: #16a34a; margin: 0 0 10px 0; font-size: 24px;">No Injuries Reported</h3>
-                <p style="color: #22c55e; font-size: 16px; margin: 0;">All Golden State Warriors players are healthy and ready to dominate! 🏆</p>
+                <p style="color: #22c55e; font-size: 16px; margin: 0;">All Golden State Warriors players are healthy and ready to dominate. 🏆</p>
             </div>
         `;
     } else {
@@ -399,13 +399,13 @@ function createEmailHTML(team) {
             }
             
             playersHTML += `
-                <div style="background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%); border-left: 6px solid ${statusColor}; padding: 24px; margin-bottom: 20px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); transition: transform 0.2s;">
-                    <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 12px;">
-                        <div>
-                            <h3 style="margin: 0 0 8px 0; color: #1d4ed8; font-size: 22px; font-weight: 700;">${player.full_name}</h3>
-                            <p style="margin: 0; color: #64748b; font-size: 15px; font-weight: 500;">#${player.jersey_number || 'N/A'} • ${player.primary_position || 'N/A'}</p>
+                <div style="background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%); border-left: 6px solid ${statusColor}; padding: 24px; margin-bottom: 20px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
+                    <div style="margin-bottom: 12px;">
+                        <div style="margin-bottom: 8px;">
+                            <span style="display: inline-block; background: ${statusColor}; color: white; padding: 6px 14px; border-radius: 20px; font-size: 12px; font-weight: 700; box-shadow: 0 2px 6px rgba(0,0,0,0.15); white-space: nowrap;">${statusEmoji} ${status}</span>
                         </div>
-                        <span style="background: ${statusColor}; color: white; padding: 8px 16px; border-radius: 25px; font-size: 13px; font-weight: 700; box-shadow: 0 2px 6px rgba(0,0,0,0.15);">${statusEmoji} ${status}</span>
+                        <h3 style="margin: 8px 0; color: #1d4ed8; font-size: 22px; font-weight: 700;">${player.full_name}</h3>
+                        <p style="margin: 0; color: #64748b; font-size: 15px; font-weight: 500;">#${player.jersey_number || 'N/A'} • ${player.primary_position || 'N/A'}</p>
                     </div>
                     <div style="background: #f1f5f9; padding: 14px; border-radius: 8px; margin: 12px 0;">
                         <p style="margin: 0; color: #334155; font-size: 15px; line-height: 1.6;"><strong style="color: #1d4ed8;">Injury Details:</strong> ${description}</p>
@@ -498,9 +498,9 @@ function createEmailHTML(team) {
                 </div>
                 
                 <!-- Footer -->
+                                <!-- Footer -->
                 <div style="background: #f8fafc; padding: 30px 20px; text-align: center; border-top: 3px solid #1d4ed8;">
-                    <p style="margin: 0 0 8px 0; color: #64748b; font-size: 13px; font-weight: 600;">Powered by DubNation Health Hub 💙💛</p>
-                    <p style="margin: 0 0 8px 0; color: #94a3b8; font-size: 12px;">Real-time injury data provided by Sportradar</p>
+                    <p style="margin: 0 0 8px 0; color: #64748b; font-size: 13px; font-weight: 600;">Powered by DubNation Health Hub</p>
                     <p style="margin: 0; color: #cbd5e1; font-size: 11px;">© ${new Date().getFullYear()} DubNation Health Hub. All rights reserved.</p>
                 </div>
             </div>
