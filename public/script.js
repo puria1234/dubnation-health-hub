@@ -200,6 +200,12 @@ function showPage(pageName) {
         link.classList.remove('active');
     });
     
+    // Close mobile menu
+    const navMenu = document.getElementById('navMenu');
+    if (navMenu) {
+        navMenu.classList.remove('active');
+    }
+    
     // Show selected page
     if (pageName === 'home') {
         document.getElementById('homePage').classList.remove('hidden');

@@ -943,49 +943,321 @@ input[readonly] {
 
 @media (max-width: 768px) {
   body {
-    padding: 1rem;
+    padding: 0.5rem;
+  }
+  
+  /* Navbar Mobile Optimization */
+  .nav-container {
+    padding: 0.75rem 1rem;
+  }
+  
+  .nav-logo-img {
+    width: 32px;
+    height: 32px;
+  }
+  
+  .nav-brand {
+    font-size: 0.85rem;
+  }
+  
+  .nav-menu {
+    position: fixed;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    background: rgba(0, 8, 20, 0.98);
+    backdrop-filter: blur(20px);
+    flex-direction: column;
+    gap: 0;
+    padding: 1rem 0;
+    border-bottom: 2px solid var(--glass-border);
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+  }
+  
+  .nav-menu.active {
+    transform: translateX(0);
+  }
+  
+  .nav-menu li {
+    width: 100%;
+    text-align: center;
+    border-bottom: 1px solid rgba(255, 199, 44, 0.1);
+  }
+  
+  .nav-link {
+    display: block;
+    padding: 1.25rem 1.5rem !important;
+    font-size: 1.1rem !important;
+    min-height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .nav-cta {
+    margin: 1rem auto;
+    display: inline-block;
+    padding: 1rem 2.5rem !important;
+    font-size: 1.1rem !important;
+  }
+  
+  .nav-toggle {
+    display: flex;
+    z-index: 1001;
+    padding: 0.5rem;
+    min-width: 44px;
+    min-height: 44px;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* Hero Section */
+  .hero-section {
+    padding: 2rem 0;
+    margin-bottom: 2rem;
+  }
+  
+  .warriors-logo-large {
+    width: 120px;
+    height: 120px;
   }
   
   .header h1 {
-    font-size: 2rem;
+    font-size: 1.75rem;
   }
   
   .logo-text {
-    font-size: 1.8rem;
+    font-size: 1.5rem;
   }
   
+  .subtitle {
+    font-size: 1rem;
+  }
+  
+  /* Buttons - Make them touch-friendly */
+  .btn {
+    padding: 1.25rem 2.5rem !important;
+    font-size: 1.1rem !important;
+    min-height: 56px;
+    width: 100%;
+    max-width: 400px;
+    margin: 0.5rem auto;
+    display: block;
+  }
+  
+  .btn-primary,
+  .btn-secondary,
+  .btn-danger {
+    width: 100%;
+    max-width: 400px;
+  }
+  
+  /* Cards */
   .card {
-    padding: 1.5rem;
-  }
-  
-  .team-header {
-    padding: 1.5rem;
-  }
-  
-  .team-header h3 {
-    font-size: 1.6rem;
-  }
-  
-  .injury-card {
     padding: 1.25rem;
+    margin: 1rem 0;
+  }
+  
+  /* Injury Cards - Better mobile layout */
+  .injury-card {
+    padding: 1.5rem 1.25rem;
+    margin: 1rem 0;
   }
   
   .player-name {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
   }
   
-  .header .flex-between {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
+  .player-position,
+  .player-number {
+    font-size: 1rem;
+  }
+  
+  .injury-status {
+    font-size: 1rem;
+    padding: 0.875rem 1.5rem;
+    min-height: 44px;
+  }
+  
+  .injury-description {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+  
+  /* Team Header */
+  .team-header {
+    padding: 1.5rem 1.25rem;
+  }
+  
+  .team-header h3 {
+    font-size: 1.5rem;
+  }
+  
+  /* Form Inputs - Touch-friendly */
+  .input-group input,
+  .input-group textarea {
+    padding: 1.25rem 1.5rem;
+    font-size: 1.1rem;
+    min-height: 56px;
+  }
+  
+  .input-group label {
+    font-size: 1rem;
+  }
+  
+  /* Auth Forms */
+  .auth-container {
+    padding: 1.5rem 1rem;
+  }
+  
+  .auth-card {
+    padding: 2rem 1.5rem;
   }
   
   .auth-tabs {
-    flex-direction: column;
+    flex-direction: row;
+    gap: 0;
   }
   
-  .btn {
-    padding: 0.875rem 2rem;
+  .auth-tab {
+    flex: 1;
+    padding: 1.25rem 1rem;
+    font-size: 1.1rem;
+    min-height: 56px;
+  }
+  
+  /* Checkboxes - Larger touch targets */
+  .checkbox-group {
+    padding: 1rem 0;
+  }
+  
+  .checkbox-group input[type="checkbox"] {
+    width: 24px;
+    height: 24px;
+    min-width: 24px;
+    min-height: 24px;
+  }
+  
+  .checkbox-group label {
+    font-size: 1.05rem;
+    padding-left: 0.75rem;
+  }
+  
+  /* Status Messages */
+  .status {
+    font-size: 1rem;
+    padding: 1.25rem 1.5rem;
+  }
+  
+  /* Profile Dropdown */
+  .profile-dropdown {
+    position: static;
+  }
+  
+  .profile-avatar {
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
+    min-height: 44px;
+  }
+  
+  .profile-avatar img {
+    width: 44px;
+    height: 44px;
+  }
+  
+  .profile-menu {
+    position: fixed;
+    top: 60px;
+    right: 0;
+    left: 0;
+    width: 100%;
+    border-radius: 0;
+    max-height: calc(100vh - 60px);
+    overflow-y: auto;
+  }
+  
+  .profile-menu-item {
+    padding: 1.25rem 1.5rem;
+    font-size: 1.1rem;
+    min-height: 56px;
+  }
+  
+  /* Avatar Grid */
+  .avatar-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+  }
+  
+  .avatar-option {
+    min-height: 80px;
+    padding: 0.75rem;
+  }
+  
+  .avatar-option img {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .current-avatar-img {
+    width: 140px;
+    height: 140px;
+  }
+  
+  /* Page Container */
+  .page-container {
+    padding-top: 70px;
+  }
+  
+  /* Stats */
+  .stats-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .stat-card {
+    padding: 1.5rem;
+  }
+  
+  /* About Page */
+  .about-container {
+    padding: 1.5rem 1rem;
+  }
+  
+  .feature-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .feature-card {
+    padding: 1.75rem 1.5rem;
+  }
+  
+  /* Ensure all clickable elements have minimum touch target */
+  a, button, input, select, textarea {
+    min-height: 44px;
+  }
+  
+  /* Remove hover effects on mobile (they don't work well with touch) */
+  .btn:hover,
+  .nav-link:hover,
+  .injury-card:hover {
+    transform: none;
+  }
+  
+  /* Add active states for better mobile feedback */
+  .btn:active {
+    transform: scale(0.98);
+    opacity: 0.9;
+  }
+  
+  .nav-link:active {
+    background: rgba(255, 199, 44, 0.1);
+  }
+  
+  .injury-card:active {
+    transform: scale(0.99);
   }
 }
 
