@@ -1,5 +1,3 @@
-import fetch from 'node-fetch';
-
 // In-memory cache (will persist during the function's lifetime)
 let injuryCache = {
     data: null,
