@@ -176,7 +176,7 @@ async function handleSignup() {
     if (error) {
         showStatus(`Error: ${error.message}`, 'error', 'authStatus');
     } else {
-        showStatus('Account created! Please check your email to verify.', 'success', 'authStatus');
+        showStatus('Account created.', 'success', 'authStatus');
     }
 }
 
@@ -361,7 +361,7 @@ async function sendEmail() {
             throw new Error(result.error || 'Failed to send email');
         }
         
-        showStatus(`Email sent to ${toEmail}!`, 'success');
+        showStatus(`Email sent to ${toEmail}`, 'success');
     } catch (error) {
         showStatus(`Error: ${error.message}`, 'error');
         console.error('Send error:', error);
@@ -373,10 +373,10 @@ function createEmailHTML(team) {
     
     if (!team || !team.players || team.players.length === 0) {
         playersHTML = `
-            <div style="text-align: center; padding: 40px; background: #f0fdf4; border-radius: 10px;">
-                <div style="font-size: 48px; margin-bottom: 10px;">✅</div>
-                <h3 style="color: #16a34a; margin: 0;">No Injuries Reported</h3>
-                <p style="color: #4ade80;">All Golden State Warriors players are healthy!</p>
+            <div style="text-align: center; padding: 40px; background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%); border-radius: 15px; margin: 20px 0;">
+                <div style="font-size: 64px; margin-bottom: 10px; animation: bounce 1s infinite;">✅</div>
+                <h3 style="color: #16a34a; margin: 0 0 10px 0; font-size: 24px;">No Injuries Reported</h3>
+                <p style="color: #22c55e; font-size: 16px; margin: 0;">All Golden State Warriors players are healthy and ready to dominate. 🏆</p>
             </div>
         `;
     } else {
@@ -385,22 +385,32 @@ function createEmailHTML(team) {
             const description = player.injuries?.[0]?.desc || 'No details available';
             const updateDate = player.injuries?.[0]?.update_date || 'N/A';
             
-            let statusColor = '#6366f1';
-            if (status.toLowerCase().includes('out')) statusColor = '#ef4444';
-            else if (status.toLowerCase().includes('doubtful')) statusColor = '#f59e0b';
-            else if (status.toLowerCase().includes('questionable')) statusColor = '#eab308';
+            let statusColor = '#1d4ed8';
+            let statusEmoji = '🏥';
+            if (status.toLowerCase().includes('out')) {
+                statusColor = '#dc2626';
+                statusEmoji = '❌';
+            } else if (status.toLowerCase().includes('doubtful')) {
+                statusColor = '#f59e0b';
+                statusEmoji = '⚠️';
+            } else if (status.toLowerCase().includes('questionable')) {
+                statusColor = '#eab308';
+                statusEmoji = '❓';
+            }
             
             playersHTML += `
-                <div style="background: #f8fafc; border-left: 4px solid ${statusColor}; padding: 20px; margin-bottom: 15px; border-radius: 8px;">
-                    <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 10px;">
+                <div style="background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%); border-left: 6px solid ${statusColor}; padding: 24px; margin-bottom: 20px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); transition: transform 0.2s;">
+                    <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 12px;">
                         <div>
-                            <h3 style="margin: 0 0 5px 0; color: #1e293b; font-size: 18px;">${player.full_name}</h3>
-                            <p style="margin: 0; color: #64748b; font-size: 14px;">${player.primary_position || 'N/A'}</p>
+                            <h3 style="margin: 0 0 8px 0; color: #1d4ed8; font-size: 22px; font-weight: 700;">${player.full_name}</h3>
+                            <p style="margin: 0; color: #64748b; font-size: 15px; font-weight: 500;">#${player.jersey_number || 'N/A'} • ${player.primary_position || 'N/A'}</p>
                         </div>
-                        <span style="background: ${statusColor}; color: white; padding: 6px 12px; border-radius: 20px; font-size: 12px; font-weight: 600;">${status}</span>
+                        <span style="background: ${statusColor}; color: white; padding: 8px 16px; border-radius: 25px; font-size: 13px; font-weight: 700; box-shadow: 0 2px 6px rgba(0,0,0,0.15);">${statusEmoji} ${status}</span>
                     </div>
-                    <p style="margin: 10px 0; color: #475569; font-size: 14px;"><strong>Injury:</strong> ${description}</p>
-                    <p style="margin: 0; color: #94a3b8; font-size: 12px;">Updated: ${new Date(updateDate).toLocaleDateString()}</p>
+                    <div style="background: #f1f5f9; padding: 14px; border-radius: 8px; margin: 12px 0;">
+                        <p style="margin: 0; color: #334155; font-size: 15px; line-height: 1.6;"><strong style="color: #1d4ed8;">Injury Details:</strong> ${description}</p>
+                    </div>
+                    <p style="margin: 0; color: #94a3b8; font-size: 13px;">📅 Last Updated: ${new Date(updateDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</p>
                 </div>
             `;
         });
@@ -412,20 +422,86 @@ function createEmailHTML(team) {
         <head>
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <style>
+                @keyframes fadeIn {
+                    from { opacity: 0; transform: translateY(20px); }
+                    to { opacity: 1; transform: translateY(0); }
+                }
+                @keyframes bounce {
+                    0%, 100% { transform: translateY(0); }
+                    50% { transform: translateY(-10px); }
+                }
+                @keyframes shimmer {
+                    0% { background-position: -1000px 0; }
+                    100% { background-position: 1000px 0; }
+                }
+                @keyframes pulse {
+                    0%, 100% { transform: scale(1); }
+                    50% { transform: scale(1.05); }
+                }
+                .promo-button {
+                    display: inline-block;
+                    background: linear-gradient(90deg, #1d4ed8 0%, #2563eb 25%, #fbbf24 50%, #2563eb 75%, #1d4ed8 100%);
+                    background-size: 200% auto;
+                    color: white;
+                    text-decoration: none;
+                    padding: 18px 40px;
+                    border-radius: 50px;
+                    font-size: 18px;
+                    font-weight: 700;
+                    animation: shimmer 3s linear infinite, pulse 2s ease-in-out infinite;
+                    box-shadow: 0 6px 20px rgba(29, 78, 216, 0.4);
+                    transition: transform 0.2s;
+                }
+                .promo-button:hover {
+                    transform: scale(1.1);
+                }
+            </style>
         </head>
-        <body style="margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f1f5f9;">
-            <div style="max-width: 600px; margin: 0 auto; background: white;">
-                <div style="background: linear-gradient(135deg, #1d4ed8 0%, #fbbf24 100%); color: white; padding: 40px 20px; text-align: center;">
-                    <h1 style="margin: 0 0 10px 0; font-size: 32px;">🏀 Golden State Warriors</h1>
-                    <p style="margin: 0; font-size: 18px; opacity: 0.9;">Injury Report</p>
-                    <p style="margin: 10px 0 0 0; font-size: 14px; opacity: 0.8;">${new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</p>
+        <body style="margin: 0; padding: 0; font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);">
+            <div style="max-width: 650px; margin: 0 auto; background: white; box-shadow: 0 10px 40px rgba(0,0,0,0.1); border-radius: 20px; overflow: hidden;">
+                <!-- Header -->
+                <div style="background: linear-gradient(135deg, #1d4ed8 0%, #2563eb 50%, #fbbf24 100%); color: white; padding: 50px 30px; text-align: center; position: relative; overflow: hidden;">
+                    <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: url('data:image/svg+xml,%3Csvg width=\"40\" height=\"40\" xmlns=\"http://www.w3.org/2000/svg\"%3E%3Cpath d=\"M0 0h20v20H0V0zm20 20h20v20H20V20z\" fill=\"%23ffffff\" fill-opacity=\"0.05\"/%3E%3C/svg%3E'); opacity: 0.3;"></div>
+                    <div style="position: relative; z-index: 1;">
+                        <div style="font-size: 72px; margin-bottom: 15px; animation: bounce 2s infinite;">🏀</div>
+                        <h1 style="margin: 0 0 15px 0; font-size: 38px; font-weight: 900; text-shadow: 2px 2px 4px rgba(0,0,0,0.2);">DUBNATION HEALTH HUB</h1>
+                        <div style="display: inline-block; background: rgba(255,255,255,0.2); backdrop-filter: blur(10px); padding: 12px 24px; border-radius: 30px; margin-bottom: 10px;">
+                            <p style="margin: 0; font-size: 20px; font-weight: 600; letter-spacing: 1px;">🔵⚪ WARRIORS INJURY REPORT ⚪🔵</p>
+                        </div>
+                        <p style="margin: 10px 0 0 0; font-size: 15px; opacity: 0.95; font-weight: 500;">${new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</p>
+                    </div>
                 </div>
-                <div style="padding: 30px 20px;">
-                    <h2 style="color: #1e293b; margin-top: 0;">Current Injuries</h2>
+                
+                <!-- Content -->
+                <div style="padding: 40px 30px;">
+                    <div style="text-align: center; margin-bottom: 30px;">
+                        <h2 style="color: #1d4ed8; margin: 0 0 10px 0; font-size: 28px; font-weight: 800;">📋 Current Team Status</h2>
+                        <div style="width: 80px; height: 4px; background: linear-gradient(90deg, #1d4ed8, #fbbf24); margin: 0 auto; border-radius: 2px;"></div>
+                    </div>
                     ${playersHTML}
                 </div>
-                <div style="background: #f8fafc; padding: 20px; text-align: center; border-top: 1px solid #e2e8f0;">
-                    <p style="margin: 0; color: #64748b; font-size: 12px;">Data provided by Sportradar</p>
+                
+                <!-- Promo Section -->
+                <div style="background: linear-gradient(135deg, #1e293b 0%, #334155 100%); padding: 50px 30px; text-align: center; margin-top: 30px;">
+                    <div style="margin-bottom: 25px;">
+                        <h2 style="color: #fbbf24; margin: 0 0 15px 0; font-size: 32px; font-weight: 900; text-transform: uppercase; letter-spacing: 2px;">⚡ EXCLUSIVE OFFER ⚡</h2>
+                        <p style="color: #e2e8f0; margin: 0 0 10px 0; font-size: 18px; font-weight: 600;">Rep Your Warriors in Style!</p>
+                        <p style="color: #cbd5e1; margin: 0; font-size: 15px;">Official Golden State Warriors Gear & Merchandise</p>
+                    </div>
+                    <div style="margin: 30px 0;">
+                        <a href="https://www.rakuten.com/shop/warriorsshop" class="promo-button" style="display: inline-block; background: linear-gradient(90deg, #1d4ed8 0%, #2563eb 25%, #fbbf24 50%, #2563eb 75%, #1d4ed8 100%); background-size: 200% auto; color: white; text-decoration: none; padding: 18px 40px; border-radius: 50px; font-size: 18px; font-weight: 700; box-shadow: 0 6px 20px rgba(251, 191, 36, 0.4);">
+                            🛒 SHOP WARRIORS STORE NOW 🏆
+                        </a>
+                    </div>
+                    <p style="color: #94a3b8; margin: 20px 0 0 0; font-size: 13px;">Limited time offers • Free shipping on orders over $50</p>
+                </div>
+                
+                <!-- Footer -->
+                <div style="background: #f8fafc; padding: 30px 20px; text-align: center; border-top: 3px solid #1d4ed8;">
+                    <p style="margin: 0 0 8px 0; color: #64748b; font-size: 13px; font-weight: 600;">Powered by DubNation Health Hub 💙💛</p>
+                    <p style="margin: 0 0 8px 0; color: #94a3b8; font-size: 12px;">Real-time injury data provided by Sportradar</p>
+                    <p style="margin: 0; color: #cbd5e1; font-size: 11px;">© ${new Date().getFullYear()} DubNation Health Hub. All rights reserved.</p>
                 </div>
             </div>
         </body>
@@ -508,7 +584,7 @@ function handleAvatarUpload(event) {
             option.classList.remove('selected');
         });
         
-        showStatus('Avatar uploaded! Click Save Profile to apply changes.', 'success', 'profileStatus');
+        showStatus('Avatar uploaded. Click Save Profile to apply changes.', 'success', 'profileStatus');
     };
     reader.readAsDataURL(file);
 }

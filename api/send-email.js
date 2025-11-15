@@ -19,7 +19,7 @@ export default async function handler(req, res) {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                from: 'onboarding@resend.dev',
+                from: 'DubNation Health Hub <health@dubnation.app>',
                 to: toEmail,
                 subject: subject,
                 html: htmlContent
