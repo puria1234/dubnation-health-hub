@@ -260,6 +260,12 @@ function toggleMobileMenu() {
     navMenu.classList.toggle('active');
 }
 
+// Close mobile menu
+function closeMobileMenu() {
+    const navMenu = document.getElementById('navMenu');
+    navMenu.classList.remove('active');
+}
+
 // Initialize on page load
 window.addEventListener('DOMContentLoaded', () => {
     initSupabase(); // This will handle showing the right page based on auth state
@@ -689,22 +695,59 @@ const originalUpdateAuthUI = updateAuthUI;
 updateAuthUI = function() {
     originalUpdateAuthUI();
     
+    // Desktop elements
     const profileDropdown = document.getElementById('profileDropdown');
     const authNavItem = document.getElementById('authNavItem');
     
+    // Mobile elements
+    const profileDropdownMobile = document.getElementById('profileDropdownMobile');
+    const authNavItemMobile = document.getElementById('authNavItemMobile');
+    
     if (currentUser) {
-        // Show profile dropdown, hide auth nav item
+        // Desktop: Show profile dropdown, hide auth nav item
         if (profileDropdown) profileDropdown.style.display = 'block';
         if (authNavItem) authNavItem.style.display = 'none';
         
-        // Load profile data
+        // Mobile: Show profile dropdown, hide auth nav item
+        if (profileDropdownMobile) profileDropdownMobile.style.display = 'flex';
+        if (authNavItemMobile) authNavItemMobile.style.display = 'none';
+        
+        // Load profile data for both desktop and mobile
         loadProfile();
+        loadMobileProfile();
     } else {
-        // Hide profile dropdown, show auth nav item
+        // Desktop: Hide profile dropdown, show auth nav item
         if (profileDropdown) profileDropdown.style.display = 'none';
         if (authNavItem) authNavItem.style.display = 'block';
+        
+        // Mobile: Hide profile dropdown, show auth nav item
+        if (profileDropdownMobile) profileDropdownMobile.style.display = 'none';
+        if (authNavItemMobile) authNavItemMobile.style.display = 'block';
     }
 };
+
+// Load mobile profile
+function loadMobileProfile() {
+    if (!currentUser) return;
+    
+    const mobileAvatar = document.querySelector('.profile-avatar-mobile img');
+    const mobileUsername = document.querySelector('.profile-avatar-mobile span');
+    const mobileEmail = document.getElementById('profileEmailMobile');
+    
+    if (mobileAvatar) {
+        mobileAvatar.src = currentUser.user_metadata?.avatar_url || 
+                          `https://ui-avatars.com/api/?name=${encodeURIComponent(currentUser.email)}&background=1d4ed8&color=ffc72c&size=128`;
+    }
+    
+    if (mobileUsername) {
+        mobileUsername.textContent = currentUser.user_metadata?.full_name || 
+                                     currentUser.email?.split('@')[0] || 'User';
+    }
+    
+    if (mobileEmail) {
+        mobileEmail.textContent = currentUser.email;
+    }
+}
 
 // Update showPage to handle profile page
 const originalShowPage = showPage;

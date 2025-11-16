@@ -19,17 +19,40 @@
                 <div class="nav-logo-img"></div>
                 <span class="nav-brand">DUBNATION HEALTH HUB</span>
             </div>
+            
+            <!-- Mobile Menu Toggle -->
+            <div class="nav-toggle" onclick="toggleMobileMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            
             <ul class="nav-menu" id="navMenu">
-                <li><a href="#" class="nav-link active" onclick="showPage('home')">Home</a></li>
-                <li><a href="#" class="nav-link" onclick="showPage('tracker')">Injury Tracker</a></li>
-                <li><a href="#" class="nav-link" onclick="showPage('about')">About</a></li>
+                <li><a href="#" class="nav-link active" onclick="showPage('home'); closeMobileMenu();">Home</a></li>
+                <li><a href="#" class="nav-link" onclick="showPage('tracker'); closeMobileMenu();">Injury Tracker</a></li>
+                <li><a href="#" class="nav-link" onclick="showPage('about'); closeMobileMenu();">About</a></li>
+                
+                <!-- Sign In Button in mobile menu -->
+                <li class="nav-menu-auth">
+                    <div id="authNavItemMobile" style="display: block;">
+                        <a href="#" class="nav-link nav-cta" onclick="showPage('auth'); closeMobileMenu();">Sign In</a>
+                    </div>
+                    <div class="profile-dropdown-mobile" id="profileDropdownMobile" style="display: none;">
+                        <div class="profile-avatar-mobile" onclick="toggleProfileMenu()">
+                            <img id="navProfileAvatarMobile" src="https://api.dicebear.com/7.x/notionists/svg?seed=basketball" alt="Profile">
+                            <span id="profileEmailMobile">user@example.com</span>
+                        </div>
+                        <a href="#" class="nav-link" onclick="showPage('profile'); closeMobileMenu();">Customize Profile</a>
+                        <a href="#" class="nav-link" onclick="handleLogout(); closeMobileMenu();">Logout</a>
+                    </div>
+                </li>
             </ul>
             
             <div class="nav-right">
-                <!-- Sign In Button -->
+                <!-- Sign In Button (Desktop) -->
                 <div id="authNavItem" style="display: block;"><a href="#" class="nav-link nav-cta" onclick="showPage('auth')">Sign In</a></div>
                 
-                <!-- Profile Dropdown (Hidden by default) -->
+                <!-- Profile Dropdown (Desktop) -->
                 <div class="profile-dropdown" id="profileDropdown" style="display: none;">
                     <div class="profile-avatar" onclick="toggleProfileMenu()">
                         <img id="navProfileAvatar" src="https://api.dicebear.com/7.x/notionists/svg?seed=basketball" alt="Profile">
@@ -51,14 +74,6 @@
                         </a>
                     </div>
                 </div>
-                
-                <!-- Mobile Menu Toggle -->
-                <div class="nav-toggle" onclick="toggleMobileMenu()">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
-            </div>
             </div>
         </div>
     </nav>
