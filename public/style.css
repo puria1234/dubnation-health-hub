@@ -1027,20 +1027,65 @@ input[readonly] {
   }
   
   .nav-toggle:active {
-    opacity: 0.7;
+    background: rgba(255, 199, 44, 0.1);
+    border-radius: 8px;
+  }
+  
+  /* Mobile menu items */
+  .nav-menu li {
+    width: 100%;
+    text-align: center;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+  
+  .nav-menu .nav-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem 2rem !important;
+    font-size: 1.2rem !important;
+    min-height: 64px;
+    border-bottom: 1px solid rgba(255, 199, 44, 0.1);
+    transition: all 0.3s ease;
+    width: 100%;
+  }
+  
+  .nav-menu .nav-link:active {
+    background: rgba(255, 199, 44, 0.15);
+    color: var(--warriors-gold);
+  }
+  
+  .nav-menu .nav-link.active {
+    background: rgba(255, 199, 44, 0.1);
+    border-left: 4px solid var(--warriors-gold);
   }
   
   /* Mobile menu auth section */
   .nav-menu-auth {
     margin-top: auto;
-    padding: 2rem 0 1rem 0;
+    padding: 0;
     border-top: 2px solid rgba(255, 199, 44, 0.2);
+    width: 100%;
+  }
+  
+  #authNavItemMobile .nav-cta {
+    margin: 1.5rem;
+    width: calc(100% - 3rem);
+    display: block;
+    text-align: center;
+    padding: 1.25rem 2rem !important;
+    font-size: 1.15rem !important;
+    border-radius: 50px;
+    box-shadow: 0 4px 20px rgba(255, 199, 44, 0.4);
   }
   
   .profile-dropdown-mobile {
     display: flex;
     flex-direction: column;
     gap: 0;
+    width: 100%;
   }
   
   .profile-avatar-mobile {
@@ -1064,60 +1109,10 @@ input[readonly] {
     font-weight: 600;
   }
   
-  .nav-menu li {
-    width: 100%;
-    text-align: center;
-    padding: 0;
-    margin: 0;
-  }
-  
-  .nav-link {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 1.5rem 2rem !important;
-    font-size: 1.2rem !important;
-    min-height: 64px;
+  .profile-dropdown-mobile .nav-link {
+    border-left: none;
     border-bottom: 1px solid rgba(255, 199, 44, 0.1);
-    transition: all 0.3s ease;
-  }
-  
-  .nav-link:active {
-    background: rgba(255, 199, 44, 0.15);
-    color: var(--warriors-gold);
-  }
-  
-  .nav-link.active {
-    background: rgba(255, 199, 44, 0.1);
-    border-left: 4px solid var(--warriors-gold);
-  }
-  
-  .nav-cta {
-    margin: 1.5rem 1.5rem;
-    display: inline-block;
-    padding: 1.25rem 3rem !important;
-    font-size: 1.15rem !important;
-    border-radius: 50px;
-    box-shadow: 0 4px 20px rgba(255, 199, 44, 0.4);
-  }
-  
-  .nav-toggle {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-    z-index: 1001;
-    padding: 0.75rem;
-    min-width: 48px;
-    min-height: 48px;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: all 0.3s ease;
-  }
-  
-  .nav-toggle:active {
-    background: rgba(255, 199, 44, 0.1);
-    border-radius: 8px;
+    padding: 1.5rem 2rem !important;
   }
   
   /* Hero Section */
