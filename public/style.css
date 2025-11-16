@@ -991,10 +991,12 @@ input[readonly] {
     box-shadow: 5px 0 25px rgba(0, 0, 0, 0.5);
     overflow-y: auto;
     display: flex;
+    visibility: hidden;
   }
   
   .nav-menu.active {
     transform: translateX(0);
+    visibility: visible;
   }
   
   /* Hide desktop nav items on mobile */
