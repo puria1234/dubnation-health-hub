@@ -990,6 +990,7 @@ input[readonly] {
     transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     box-shadow: 5px 0 25px rgba(0, 0, 0, 0.5);
     overflow-y: auto;
+    display: flex;
   }
   
   .nav-menu.active {
@@ -999,9 +1000,6 @@ input[readonly] {
   /* Hide desktop nav items on mobile */
   .nav-right {
     display: none !important;
-    visibility: hidden !important;
-    opacity: 0 !important;
-    pointer-events: none !important;
   }
   
   /* Show mobile toggle */
@@ -2285,6 +2283,38 @@ input[readonly] {
 /* ============================================
    RESPONSIVE PROFILE
    ============================================ */
+
+/* Desktop - ensure nav-right is visible */
+@media (min-width: 769px) {
+  .nav-right {
+    display: flex !important;
+  }
+  
+  .nav-toggle {
+    display: none !important;
+  }
+  
+  .nav-menu {
+    display: flex !important;
+    position: absolute !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    width: auto !important;
+    height: auto !important;
+    flex-direction: row !important;
+    background: transparent !important;
+    backdrop-filter: none !important;
+    box-shadow: none !important;
+    gap: 2rem !important;
+    padding: 0 !important;
+    overflow-y: visible !important;
+    top: auto !important;
+  }
+  
+  .nav-menu-auth {
+    display: none !important;
+  }
+}
 
 @media (max-width: 768px) {
   .profile-dropdown {
