@@ -961,6 +961,7 @@ input[readonly] {
   
   .nav-container {
     padding: 1rem 1.25rem;
+    position: relative;
   }
   
   .nav-logo-img {
@@ -997,7 +998,10 @@ input[readonly] {
   
   /* Hide desktop nav items on mobile */
   .nav-right {
-    display: none;
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
   }
   
   /* Show mobile toggle */
